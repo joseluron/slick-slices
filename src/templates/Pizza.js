@@ -1,8 +1,28 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import Img from 'gatsby-image';
+import styled from 'styled-components';
 
-export default function SinglePizzaPage({ data }) {
-  return <p>{data.pizza.name}</p>;
+const PizzaGridStyles = styled.div`
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+`;
+
+export default function SinglePizzaPage({ data: { pizza } }) {
+  return (
+    <PizzaGridStyles>
+      <Img fluid={pizza.image.asset.fluid} />
+      <div>
+        <h2 className="mark">{pizza.name}</h2>
+        <ul>
+          {pizza.toppings.map((topping) => (
+            <li key={topping.id}>{topping.name}</li>
+          ))}
+        </ul>
+      </div>
+    </PizzaGridStyles>
+  );
 }
 
 // This needs to be dynamic based on the slug pased via context in gatsby-node.js
