@@ -6,6 +6,7 @@
 /.pnp
 /.cache
 .pnp.js
+/functions/placeOrder/node_modules/*
 
 # testing
 /coverage
